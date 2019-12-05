@@ -14,7 +14,7 @@ def menu():
 # 新建名片
 def new_card():
     # 用户输入信息
-    print('【创建新名片】')
+    print('【添加新名片】')
     print('请根据提示输入信息')
     name = input('请输入姓名：')
     phone = input('请输入电话：')
@@ -40,7 +40,7 @@ def all_cards():
 def search_card():
     # 用户输入姓名进行名片查询
     print('【查找名片】')
-
+    find_list = []
     # 判断系统中是否存在名片
     if not card_list:
         print('系统中没有任何名片')
@@ -48,7 +48,16 @@ def search_card():
         find_name = input('请输入要查找的姓名：')
         for i in card_list:
             if i['name'] == find_name:
-                print('{}\t\t{}\t\t{}'.format('姓名', '电话', '邮箱'))
-                print('-' * 50)
+                find_list.append(i)
+        if not find_list:
+            pass
+            # 没有找到对应的名片
+            # 1. 提示用户未找到
+            print('没有找到【{}】的名片信息！'.format(find_name))
+
+        else:
+            # 查询到对应名片
+            print('{}\t\t{}\t\t{}'.format('姓名', '电话', '邮箱'))
+            for i in find_list:
                 print('{}\t\t\t{}\t\t\t{}'.format(i['name'], i['phone'], i['email']))
                 print('-' * 50)
